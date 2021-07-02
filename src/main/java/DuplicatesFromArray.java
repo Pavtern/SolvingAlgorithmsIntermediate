@@ -8,19 +8,23 @@ public class DuplicatesFromArray {
         boolean bool = false;
         int count = 0;
 
-        for (int i = 0; i < nums.length-1; i++) {
+        for (int i = 0; i < k - 1 && i < nums.length-1; i++) {
             if(nums[i] == nums[i+1]){
                 bool = true;
-                k -= 1;
                 count += 1;
+                if(i+2 < k && i < nums.length-1)
                 continue;
             }
             if(bool){
-                remove(nums, i - count + 1, count, k);
+                k -= count;
+                remove(nums, i - count + 1, count);
                 bool = false;
+                if(i < nums.length-1)
+                i -= count;
                 count = 0;
             }
         }
+        System.out.println("\n");
 
         for (int i = 0; i < nums.length; i++) {
             System.out.print(nums[i] + ",");
@@ -29,8 +33,9 @@ public class DuplicatesFromArray {
         return k;
     }
 
-    private void remove(int[] nums, int index, int count, int last){
-        for (int i = index; i < last; i++) {
+    private void remove(int[] nums, int index, int count){
+        System.out.print(".");
+        for (int i = index; i < nums.length - count; i++) {
             nums[i] = nums[i + count];
         }
     }
