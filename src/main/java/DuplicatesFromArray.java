@@ -8,18 +8,17 @@ public class DuplicatesFromArray {
         boolean bool = false;
         int count = 0;
 
-        for (int i = 0; i < k - 1 && i < nums.length-1; i++) {
+        for (int i = 0; i < k - 1; i++) {
             if(nums[i] == nums[i+1]){
                 bool = true;
                 count += 1;
-                if(i+2 < k && i < nums.length-1)
+                if(i+2 < k)
                 continue;
             }
             if(bool){
                 k -= count;
                 remove(nums, i - count + 1, count);
                 bool = false;
-                if(i < nums.length-1)
                 i -= count;
                 count = 0;
             }
