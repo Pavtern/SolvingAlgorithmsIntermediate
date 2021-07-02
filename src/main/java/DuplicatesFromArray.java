@@ -9,6 +9,7 @@ public class DuplicatesFromArray {
         int count = 0;
 
         for (int i = 0; i < k - 1; i++) {
+            System.out.println(i);
             if(nums[i] == nums[i+1]){
                 bool = true;
                 count += 1;
