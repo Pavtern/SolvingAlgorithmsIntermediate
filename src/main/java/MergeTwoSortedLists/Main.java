@@ -10,6 +10,8 @@ public class Main {
             System.out.println(l1.val);
             l1 = l1.next;
         }
+        ListNode l5 = new ListNode();
+        System.out.println(l5.val);
 
     }
 }
