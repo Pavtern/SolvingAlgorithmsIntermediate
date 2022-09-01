@@ -1,23 +1,53 @@
 public class ImplementStr {
     public int strStr(String haystack, String needle) {
-        if (needle.isEmpty()) return 0;
-        int result = -1;
-        for (int i = 0; i < needle.length(); i++) {
-            System.out.print("result = " + result + "; i = " + i);
-            for (int j = 0; j < haystack.length(); j++) {
-                if (needle.charAt(i) == haystack.charAt(j)) {
-                    if (result == -1) {
-                        result = j;
-                    }
-                } else {
-                    result = -1;
-                }
+
+        if (needle.length() == 0) return 0;
+        if (needle.length() > haystack.length()) return -1;
+
+        int result = findAFirst(haystack, needle, 0);
+        if (result == -1) return result;
+
+        int j = 1;
+        for (int i = result + 1; i < haystack.length() && j < needle.length(); i++) {
+            if (needle.charAt(j) == haystack.charAt(i)) {
+                j++;
+            } else {
+                result = findAFirst(haystack, needle, result + 1);
+                if (result == -1) return result;
+                j = 1;
+                i = result;
             }
-            if (result == -1) return result;
         }
+
         return result;
     }
+
+    private int findAFirst(String haystack, String needle, int n) {
+        for (int i = n; i < haystack.length() - needle.length() + 1; i++) {
+            if (needle.charAt(0) == haystack.charAt(i)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
 }
+
+
+//        int result = -1;
+//        for (int i = 0; i < needle.length(); i++) {
+//        for (int j = 0; j < haystack.length(); j++) {
+//        if (needle.charAt(i) == haystack.charAt(j) && result == -1) {
+//        result = j;
+//        break;
+//        } if (j + 1 < haystack.length()) {
+//        result = -1;
+//        } else {
+//        i = 0;
+//        break;
+//        }
+//        }
+//        if (result == -1) return result;
 
 //    Implement strStr().
 //
