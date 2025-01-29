@@ -5,7 +5,6 @@ import java.util.Queue;
 
 public class SameTree {
     public boolean isSameTree(TreeNode p, TreeNode q) {
-        if (p == null && q == null) return true;
         Queue<TreeNode[]> queue = new LinkedList<>();
         queue.add(new TreeNode[]{p, q});
         while (!queue.isEmpty()) {
@@ -18,7 +17,6 @@ public class SameTree {
 
             queue.add(new TreeNode[]{currentP.left, currentQ.left});
             queue.add(new TreeNode[]{currentP.right, currentQ.right});
-
         }
         return true;
     }
